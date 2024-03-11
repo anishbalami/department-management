@@ -1,12 +1,14 @@
 package org.RealAnish.departmentproject.service;
 
 import org.RealAnish.departmentproject.entity.Department;
+import org.RealAnish.departmentproject.error.DepartmentNotFoundException;
 import org.RealAnish.departmentproject.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class DepartmentServiceImp implements DepartmentService{
@@ -58,6 +60,18 @@ public class DepartmentServiceImp implements DepartmentService{
 
         return departmentRepository.save(depDB);
 
+    }
+
+    @Override
+    public Department fetchDepartmentById(Long departmentId) throws DepartmentNotFoundException {
+        Optional<Department> department =
+                departmentRepository.findById(departmentId);
+
+        if(!department.isPresent())
+        {
+            throw new DepartmentNotFoundException("Department is not Available");
+        }
+        return department.get();
     }
 
 

@@ -2,6 +2,7 @@ package org.RealAnish.departmentproject.controller;
 
 import jakarta.validation.Valid;
 import org.RealAnish.departmentproject.entity.Department;
+import org.RealAnish.departmentproject.error.DepartmentNotFoundException;
 import org.RealAnish.departmentproject.service.DepartmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +44,11 @@ public class DepartmentController
     public Department updateDepartment(@PathVariable("id") Long departmentId, @RequestBody Department department)
     {
       return departmentService.updateDepartment(departmentId, department);
+    }
+
+    @GetMapping("/departments/id/{id}")
+    public Department fetchDepartmentById(@PathVariable("id") Long departmentId) throws DepartmentNotFoundException {
+       return departmentService.fetchDepartmentById(departmentId);
     }
     @GetMapping("departments/name/{name}")
    public Department fetchDepartmentByName(@PathVariable("name") String departmentName)
