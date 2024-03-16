@@ -11,11 +11,7 @@ public interface DepartmentService
 
     public List<Department> fetchDepartment();
 
-
     public void deleteDepartmentById(Long departmentId);
-
-
-
 
     public Department fetchDepartmentByName(String departmentName);
 
