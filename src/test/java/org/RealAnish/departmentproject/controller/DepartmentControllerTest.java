@@ -61,7 +61,6 @@ class DepartmentControllerTest {
     }
 
     @Test
-    @Disabled
     void fetchDepartmentById() throws Exception {
         Mockito.when(departmentService.fetchDepartmentById(1L))
                 .thenReturn(department);
